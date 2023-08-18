@@ -47,20 +47,22 @@ class DataParser:
             :, 20006:25006]
         self.stacked_labels_train = self.Simboli_na_prijemu_multipath_uzorak[:, 25009:50009]
 
-    def get_train_dataV1(self, ):
-        return self.Simboli_na_prijemu_uzorak[self.train_slice], self.Labele_Redni_brojevi_simbola[self.train_slice]
+    def get_train_dataV1(self, complex = False):
+        if complex: return self.Simboli_na_prijemu_uzorak[self.train_slice], self.Labele_Kompleksni_simboli[self.train_slice]
+        else: return self.Simboli_na_prijemu_uzorak[self.train_slice], self.Labele_Redni_brojevi_simbola[self.train_slice]
 
     def get_train_dataV2(self, ):
         return self.Simboli_na_prijemu_uzorak[self.train_slice_v2], self.Labele_Redni_brojevi_simbola[self.train_slice_v2]
 
-    def get_validation_dataV1(self, ):
+    def get_validation_dataV1(self,):
         return self.Simboli_na_prijemu_uzorak[self.verify_slice], self.Labele_Redni_brojevi_simbola[self.verify_slice]
 
     def get_validation_dataV2(self, ):
         return self.Simboli_na_prijemu_uzorak[self.verify_slice_v2], self.Labele_Redni_brojevi_simbola[self.verify_slice_v2]
 
-    def get_test_dataV1(self, ):
-        return self.Simboli_na_prijemu_uzorak[self.test_slice], self.Labele_Redni_brojevi_simbola[self.test_slice]
+    def get_test_dataV1(self, complex = False):
+        if complex: return self.Simboli_na_prijemu_uzorak[self.test_slice], self.Labele_Kompleksni_simboli[self.test_slice]
+        else: return self.Simboli_na_prijemu_uzorak[self.test_slice], self.Labele_Redni_brojevi_simbola[self.test_slice]
 
     def get_test_dataV2(self, ):
         return self.Simboli_na_prijemu_uzorak[self.test_slice_v2], self.Labele_Redni_brojevi_simbola[self.test_slice_v2]
@@ -73,6 +75,9 @@ class DataParser:
 
     def get_test_multipath(self, ):
         return self.stacked_simboli_test, self.stacked_labels_test
+    
+    def get_complex_symbols(self, ):
+        return self.Labele_Kompleksni_simboli
 
 
 if __name__ == "__main__":
