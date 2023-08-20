@@ -10,7 +10,7 @@ def log_norm_pdf(x, mean, var):
 
 
 class NaiveBayes:
-    def __init__(self,):
+    def __init__(self, multipah=False):
         self.symbols_phase_mean = None
         self.symbols_phase_var = None
 
@@ -18,16 +18,30 @@ class NaiveBayes:
         self.symbols_quadrature_var = None
 
         self.symbols_frequency = None
+        self.multipath = multipah
 
     def train(self, data, labels, unique_symbols):
+
+        if len(data.shape) == 2:
+            data = data[..., np.newaxis]
+        else:
+            data = np.moveaxis(data, [0], [-1])
+
+        print(data.shape)
+
         phase = data.real
         quadrature = data.imag
 
-        self.symbols_phase_mean = np.zeros(len(unique_symbols))
-        self.symbols_phase_var = np.zeros(len(unique_symbols))
-        self.symbols_quadrature_mean = np.zeros(len(unique_symbols))
-        self.symbols_quadrature_var = np.zeros(len(unique_symbols))
-        self.symbols_frequency = np.zeros(len(unique_symbols))
+        self.symbols_phase_mean = np.zeros(
+            (len(unique_symbols), data.shape[-1]))
+        self.symbols_phase_var = np.zeros(
+            (len(unique_symbols), data.shape[-1]))
+        self.symbols_quadrature_mean = np.zeros(
+            (len(unique_symbols), data.shape[-1]))
+        self.symbols_quadrature_var = np.zeros(
+            (len(unique_symbols), data.shape[-1]))
+        self.symbols_frequency = np.zeros(
+            len(unique_symbols))
 
         for i, symbol in enumerate(unique_symbols):
             phase_symbol = phase[labels == symbol]
@@ -47,23 +61,30 @@ class NaiveBayes:
             self.symbols_frequency[i] = len(phase_symbol) / len(data)
 
     def predict(self, data, unique_symbols):
+        if len(data.shape) == 2:
+            data = data[..., np.newaxis]
+        else:
+            data = np.moveaxis(data, [0], [-1])
         phase = data.real
         quadrature = data.imag
 
-        priorPhaseSymbol = np.zeros(data.shape + (len(unique_symbols),))
-        priorQuadratureSymbol = np.zeros(data.shape + (len(unique_symbols),))
+        priorPhaseSymbol = np.zeros(
+            data.shape + (len(unique_symbols), data.shape[-1]))
+        priorQuadratureSymbol = np.zeros(
+            data.shape + (len(unique_symbols), data.shape[-1]))
 
         for i, symbol in enumerate(unique_symbols):
-            priorPhaseSymbol[..., i] = log_norm_pdf(
-                phase, self.symbols_phase_mean[i], self.symbols_phase_var[i])
-            priorQuadratureSymbol[..., i] = log_norm_pdf(
-                quadrature, self.symbols_quadrature_mean[i], self.symbols_quadrature_var[i])
+            for j in range(data.shape[-1]):
+                priorPhaseSymbol[..., i, j] = log_norm_pdf(
+                    phase, self.symbols_phase_mean[i][j], self.symbols_phase_var[i][j])
+                priorQuadratureSymbol[..., i, j] = log_norm_pdf(
+                    quadrature, self.symbols_quadrature_mean[i][j], self.symbols_quadrature_var[i][j])
 
         probabilitySymbol = np.zeros(data.shape + (len(unique_symbols),))
         for i, symbol in enumerate(unique_symbols):
-            probabilitySymbol[..., i] = priorPhaseSymbol[..., i] + \
-                priorQuadratureSymbol[..., i] + \
+            probabilitySymbol[..., i] = np.sum(priorPhaseSymbol[..., i, :], axis=-1) + \
+                np.sum(priorQuadratureSymbol[..., i, :], axis=-1) + \
                 np.log(self.symbols_frequency[i])
 
         prediction = np.argmax(probabilitySymbol, axis=-1) + 1
-        return prediction
+        return prediction[..., 0]
