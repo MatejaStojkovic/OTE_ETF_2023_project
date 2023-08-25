@@ -14,7 +14,11 @@ Kako znamo da nam je kanal AWGN, to znači da će $P(x|y)$ biti normalna raspode
 Iz našeg trening skupa možemo da izračunamo parametre normalne raspodele, tj. $\mu$ i $\sigma$.
 <!-- I onda ovde jos malo formula i preformulisati lol  -->
 
-### Support Vector Machine
+### Support Vector Machine (SVM)
+
+Osnovna ideja SVM-a (Support Vector Machine) je da se nađe hiper-ravan koja najbolje razdvaja podatke u prostoru. Za QPSK imamo 4 simbola, pa je potrebno imati 2 klasifikatora koje klasifikuju podatke, jedan klasifikator za komponentu u fazi (I) i komponentu u kvadraturi (Q). Posto SVM moze koristiti razlicite matematicke funkcije (kernele) kako bi transformisao podate, mi smo koristili linearni kernel, jer je on sasvim dovoljan za posao koji radimo i daje dobre rezultate. Kada se pronadju parametri koji najbolje razdvajaju podatke, oni se onda koriste za klasifikaciju novih podataka.
+
+
 
 ## Metod
 
