@@ -14,6 +14,7 @@ Kako znamo da nam je kanal AWGN, to znači da će $P(x|y)$ biti normalna raspode
 Iz našeg trening skupa možemo da izračunamo parametre normalne raspodele, tj. $\mu$ i $\sigma$.
 <!-- I onda ovde jos malo formula i preformulisati lol  -->
 
+
 ### Support Vector Machine
 
 ## Metod

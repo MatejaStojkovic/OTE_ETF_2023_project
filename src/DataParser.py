@@ -80,6 +80,12 @@ class DataParser:
     def get_test_multipath(self, complex=False):
         return self.stacked_simboli_test, (self.stacked_labels_redni_test if not complex else self.stacked_labels_kompleksni_test)
 
+    def get_train_multipathwo(self, complex=False):
+        return self.Simboli_na_prijemu_multipath_uzorak[self.train_slice], (self.Labele_Redni_brojevi_simbola[self.train_slice] if not complex else self.Labele_Kompleksni_simboli[self.train_slice])
+
+    def get_test_multipathwo(self, complex=False):
+        return self.Simboli_na_prijemu_multipath_uzorak[self.test_slice], (self.Labele_Redni_brojevi_simbola[self.test_slice] if not complex else self.Labele_Kompleksni_simboli[self.test_slice])
+
 
 if __name__ == "__main__":
     dataParser = DataParser("data/DataForML.mat")
