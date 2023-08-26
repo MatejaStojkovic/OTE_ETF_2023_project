@@ -14,7 +14,6 @@ Kako znamo da nam je kanal AWGN, to znači da će $P(x|y)$ biti normalna raspode
 Iz našeg trening skupa možemo da izračunamo parametre normalne raspodele, tj. $\mu$ i $\sigma$.
 <!-- I onda ovde jos malo formula i preformulisati lol  -->
 
-
 ### Support Vector Machine (SVM)
 
 Osnovna ideja SVM-a (Support Vector Machine) je da se nađe hiper-ravan koja najbolje razdvaja podatke u prostoru. Za QPSK imamo 4 simbola, pa je potrebno imati 2 klasifikatora koje klasifikuju podatke, jedan klasifikator za komponentu u fazi (I) i komponentu u kvadraturi (Q). Posto SVM moze koristiti razlicite matematicke funkcije (kernele) kako bi transformisao podate, mi smo koristili linearni kernel, jer je on sasvim dovoljan za posao koji radimo i daje dobre rezultate. Kada se pronadju parametri koji najbolje razdvajaju podatke, oni se onda koriste za klasifikaciju novih podataka.
@@ -52,3 +51,12 @@ Hipoteza je bila da ukoliko su poznati predhodni simboli multipath kanala, da ce
 ## Zaključak
 
 Kako je problem jednostavan, metode ML iako daju slične(ili malo bolje) rezultate od klasičnih metoda, ne daju dovoljno dobre rezultate da bi se koristile u praksi. Ovo se moze objasniti time sto je problem jednostavan i klasične metode su dovoljne da se reše problemi. Takodje, SVM i Naivni Bayesov klasifikator su dosta kompleksniji od klasičnih metoda, pa je njihova upotreba neopravdana.
+
+## TODO
+Mateja:
+- slika podataka
+- istrenirati svm i naive bayas nad faznim kasnjenjima
+Drakula:
+  - istrenirati mrezu nad multipathom bez prethodnih vrednosti
+  - isrenirati multipath sa lin reg 
+  - probati nad regresijom promeniti naivni bayes
