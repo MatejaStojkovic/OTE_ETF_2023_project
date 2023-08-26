@@ -14,7 +14,7 @@ class DataParser:
             [self.Labele_Kompleksni_simboli[:, 0] for _ in range(8)], axis=0)
         self.Labele_Redni_brojevi_simbola = np.stack(
             [self.Labele_Redni_brojevi_simbola[:, 0] for _ in range(8)], axis=0)
-        self.Simboli_na_prijemu_fazni_offset_uzorak = mat["Simboli_na_prijemu_fazni_offset_uzorak"]
+        self.Simboli_na_prijemu_fazni_offset_uzorak = mat["Simboli_na_prijemu_fazni_offset_uzorak"] #ovo treba gurnuti u bayes
         self.Simboli_na_prijemu_multipath_uzorak = mat["Simboli_na_prijemu_multipath_uzorak"]
         self.Simboli_na_prijemu_uzorak = mat["Simboli_na_prijemu_uzorak"]
         self.SNR = {
@@ -85,6 +85,16 @@ class DataParser:
 
     def get_test_multipathwo(self, complex=False):
         return self.Simboli_na_prijemu_multipath_uzorak[self.test_slice], (self.Labele_Redni_brojevi_simbola[self.test_slice] if not complex else self.Labele_Kompleksni_simboli[self.test_slice])
+    
+    def get_train_fazni_offset(self, complex=False):
+        return self.Simboli_na_prijemu_fazni_offset_uzorak[self.train_slice], (self.Labele_Redni_brojevi_simbola[self.train_slice] if not complex else self.Labele_Kompleksni_simboli[self.train_slice])
+
+    def get_validation_fazni_offset(self, complex=False):
+        return self.Simboli_na_prijemu_fazni_offset_uzorak[self.verify_slice], (self.Labele_Redni_brojevi_simbola[self.verify_slice] if not complex else self.Labele_Kompleksni_simboli[self.verify_slice])
+
+    def get_test_fazni_offset(self, complex=False):
+        return self.Simboli_na_prijemu_fazni_offset_uzorak[self.test_slice], (self.Labele_Redni_brojevi_simbola[self.test_slice] if not complex else self.Labele_Kompleksni_simboli[self.test_slice])
+
 
 
 if __name__ == "__main__":

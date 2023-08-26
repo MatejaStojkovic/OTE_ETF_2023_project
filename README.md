@@ -44,7 +44,7 @@ Mozemo primetiti da su rezultati za SVM i Naivni Bayesov klasifikator slični, d
 
 ### Multipath rezultati
 
-Hipoteza je bila da ukoliko su poznati predhodni simboli multipath kanala, da ce otklanjanje grešaka u podacima biti uspešnije. Dobijeni rezultati ukazuju da to nije slučaj, čak šta više, ispostavlja se da je gore nego da radimo bez njega. Ovo se moze objasniti time sto ne postoji korelacija izmedju prethodnih i buducih simbola.
+TODO;
 
 <!-- Ovde samo jedan plot sa 3 heat mape za SVM, NB i klasicnu metodu -->
 
