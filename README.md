@@ -57,6 +57,6 @@ Mateja:
 - slika podataka
 - istrenirati svm i naive bayas nad faznim kasnjenjima
 Drakula:
-  - istrenirati mrezu nad multipathom bez prethodnih vrednosti
-  - isrenirati multipath sa lin reg 
-  - probati nad regresijom promeniti naivni bayes
+- istrenirati mrezu nad multipathom bez prethodnih vrednosti
+- isrenirati multipath sa lin reg 
+- probati nad regresijom promeniti naivni bayes
