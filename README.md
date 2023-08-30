@@ -9,7 +9,7 @@ Možemo da primetimo da će donji član biti isti za sve simbole pa nam on nije 
 Gde je $A$ događaj za koji želimo da znamo koja je verovatnoća da se desi ukoliko znamo da se desio događaj $B$.
 
 Ovu formulu prilagođavamo QPSK klasifikaciji tako što su mogući događaji:
-$S\in\left\{S_1, S_2, S_3, S_4\right\}$
+$S\in\{S_1, S_2, S_3, S_4\right\}$
 <!-- I onda ovde jos malo formula i preformulisati lol  -->
 
 ### Support Vector Machine (SVM)
